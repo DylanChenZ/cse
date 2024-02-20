@@ -6,10 +6,17 @@ import json
 user_info = {}
 def main():
     root = Tk()
-    root.geometry("500x300")
+    root.geometry("3000x2000")
     root.title("credential")
 
-    label = Label(root, text="credential project").pack()
+    
+    label = Label(root, text="register page", font = ("calibre", 25) , bg = "grey", width = "300", height = "8").pack()
+    Label(text = " ", height = "4").pack()
+    Label(text = "user_name ", font = ("calibre", 20)).pack()
+    Entry(textvariable = user_name).pack()
+    Label(text = " ", height = "4").pack()
+    Label(text = "password", font = ("calibre", 20)).pack()
+    Entry(textvariable = password)
 
     root.mainloop()
     with open("output.txt", "a") as f:
