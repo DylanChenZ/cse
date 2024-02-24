@@ -95,13 +95,18 @@ class Main_Page(Tk):
         self.title("credential")
         Label(text=" ", height="2", width="600", bg="grey").pack()
         register_button = Button(text="register", height="5", width="15", command = self.create_register)
-        register_button.place(x=240, y=100)
+        register_button.place(x=240, y=220)
+        login_button = Button(text = "login", height = "5", width = "15", command = self.creat_login)
+        login_button.place(x = 240, y = 100)
         close_button = Button(text = "close", height="1", width="7", command = self.close)
         close_button.place(x = 270, y = 325)
         
     def create_register(self):
         register = register_page()
-        
+    
+    def create_login(self):
+        login = login_page()
+
     def close(self):
         self.destroy()
         self.update()
