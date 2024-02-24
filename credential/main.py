@@ -1,9 +1,8 @@
+import pickle
 import re
 from tkinter import *
 import os
 import time
-
-lay=[]
 
 def center(win):
     win.update_idletasks()
@@ -70,8 +69,9 @@ class register_page(Toplevel):
         self.clean()
             
     def save_password(self):
-        with open("output.txt", "a") as f:
-            f.write("user_name: %s \npassword: %s \n"%(self.user_name.get(), self.password.get()))
+        info[self.user_name.get()] = self.password.get()
+        with open(filename, "wb") as f:
+            pickle.dump(info,f)
         Label(self, text = "register successful!", fg = "green").pack()
         self.update()
         time.sleep(2)
@@ -105,9 +105,20 @@ class Main_Page(Tk):
     def close(self):
         self.destroy()
         self.update()
+        with open("output.txt","w") as f:
+            for user_name, password in info.items():
+                f.write("user_name: %s \npassword: %s\n\n"%(user_name, password))
         
         
 def main():
+    global filename
+    global info
+    filename = 'info.json'
+    if os.path.exists(filename):
+        with open(filename, 'rb') as f:
+            info = pickle.load(f)
+    else:
+        info = {}
     global root
     root = Main_Page()
     root.mainloop()
